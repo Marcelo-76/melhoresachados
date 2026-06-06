@@ -447,8 +447,7 @@ function ts(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minut
 
 // ── FETCH com múltiplos proxies CORS ──
 async function mlFetch(path) {
-  // Usa o backend próprio do Netlify Functions — sem bloqueio de CORS
-  const url = '/.netlify/functions/ml?path=' + encodeURIComponent(path);
+  const url = 'https://melhoresachados-production.up.railway.app/ml?path=' + encodeURIComponent(path);
   const r = await fetch(url, { signal: AbortSignal.timeout(12000) });
   if (!r.ok) throw new Error('Erro ' + r.status);
   return r.json();
